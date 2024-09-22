@@ -22,7 +22,7 @@ namespace RandomPickerUI.Logic
                 string itemName;
                 int listLenght = CurrentRequest.Items.Count;
                 var rand = new Random();
-                int itemId = rand.Next(1, listLenght);
+                int itemId = rand.Next(1, listLenght +1);
                 itemName = CurrentRequest.Items.Single( current => current.Id == itemId ).Name;
                 choosed.Add(itemName);
             }
