@@ -27,9 +27,9 @@ namespace RandomPickerUI
             testList.Add(new Item(3, "Three"));
             testList.Add(new Item(4, "Four"));
             var currentRequest = new Request(testList, 2); 
-            ChoosingService chooser = new ChoosingService(currentRequest);
+            ChoosingService chooser = new ChoosingService();
             var resultList = new List<string>();
-            resultList = chooser.Random();
+            resultList = chooser.Random(currentRequest);
             var resulString = "";
             foreach (var item in resultList)
             {

@@ -9,12 +9,7 @@ namespace RandomPickerUI.Logic
 {
     internal class ChoosingService
     {
-        public ChoosingService (Request request)
-        {
-            this.CurrentRequest = request;
-        }
-        public Request CurrentRequest { get; set; }
-        public List<string> Random()
+         public List<string> Random(Request CurrentRequest)
         {
             var randomList = CurrentRequest.Items;
             var choosed = new List<string>();
