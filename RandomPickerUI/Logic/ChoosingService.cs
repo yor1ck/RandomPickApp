@@ -16,15 +16,18 @@ namespace RandomPickerUI.Logic
         public Request CurrentRequest { get; set; }
         public List<string> Random()
         {
+            var randomList = CurrentRequest.Items;
             var choosed = new List<string>();
             for (int i = 0; i < CurrentRequest.TimesToChoose; i++)
             {
                 string itemName;
-                int listLenght = CurrentRequest.Items.Count;
+                int listLenght = randomList.Count;
+                var randomArray = randomList.ToArray();
                 var rand = new Random();
-                int itemId = rand.Next(1, listLenght +1);
-                itemName = CurrentRequest.Items.Single( current => current.Id == itemId ).Name;
+                int itemId = rand.Next(0, randomArray.Length);
+                itemName = randomArray[itemId].Name;
                 choosed.Add(itemName);
+                randomList.Remove(randomList[itemId]);
             }
                        
             return choosed;
