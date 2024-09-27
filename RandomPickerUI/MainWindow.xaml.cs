@@ -24,8 +24,9 @@ namespace RandomPickerUI
             var testList = new List<Item>();
             testList.Add(new Item(new Group(1,"first"), "One"));
             testList.Add(new Item(new Group(2, "Second"), "Two"));
-            testList.Add(new Item(new Group(3, "Third"), "Three"));
-            testList.Add(new Item(new Group(4, "Fourth"), "Four"));
+            testList.Add(new Item(new Group(2, "Second"), "Three"));
+            testList.Add(new Item(new Group(1, "first"), "Four"));
+            testList = testList.Where(x=> x.CurrentGroup.Id == 2).ToList();
             var currentRequest = new Request(testList, 2); 
             ChoosingService chooser = new ChoosingService();
             var resultList = new List<string>();
