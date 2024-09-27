@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace RandomPickerUI.Entities
 {
-    internal class Item
+    internal class Group
     {
-        public Item(Group group, string name)
+        public Group(int id, string name)
         {
-            CurrentGroup  = group;
+            Id = id;
             Name = name;
         }
-        public Group CurrentGroup { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
     }
 }

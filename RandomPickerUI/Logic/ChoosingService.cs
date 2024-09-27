@@ -12,6 +12,7 @@ namespace RandomPickerUI.Logic
          public List<string> Random(Request CurrentRequest)
         {
             var randomList = CurrentRequest.Items;
+            var groups = CurrentRequest.Items.Select(x => x.CurrentGroup).Distinct().ToList();
             var choosed = new List<string>();
             for (int i = 0; i < CurrentRequest.TimesToChoose; i++)
             {
