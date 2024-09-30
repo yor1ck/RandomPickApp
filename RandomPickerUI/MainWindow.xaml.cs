@@ -22,11 +22,11 @@ namespace RandomPickerUI
         {
             InitializeComponent();
             var testList = new List<Item>();
-            testList.Add(new Item(new Group(1,"first"), "One"));
-            testList.Add(new Item(new Group(2, "Second"), "Two"));
-            testList.Add(new Item(new Group(2, "Second"), "Three"));
-            testList.Add(new Item(new Group(1, "first"), "Four"));
-            testList = testList.Where(x=> x.CurrentGroup.Id == 2).ToList();
+            testList.Add(new Item("One"));
+            testList.Add(new Item("Two"));
+            testList.Add(new Item("Three"));
+            testList.Add(new Item("Four"));
+            
             var currentRequest = new Request(testList, 2); 
             ChoosingService chooser = new ChoosingService();
             var resultList = new List<string>();
@@ -34,7 +34,7 @@ namespace RandomPickerUI
             var resulString = "";
             foreach (var item in resultList)
             {
-                resulString = resulString + item;
+                resulString = resulString + item + "\n";
             }
             result.Text = resulString;
         }

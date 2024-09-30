@@ -8,12 +8,10 @@ namespace RandomPickerUI.Entities
 {
     internal class Item
     {
-        public Item(Group group, string name)
+        public Item(string name)
         {
-            CurrentGroup  = group;
-            Name = name;
+              Name = name;
         }
-        public Group CurrentGroup { get; set; }
         public string Name { get; set; }
     }
 }

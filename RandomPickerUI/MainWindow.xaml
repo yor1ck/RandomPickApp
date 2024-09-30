@@ -7,6 +7,12 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <TextBlock x:Name="result" HorizontalAlignment="Left" Margin="323,0,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Center"/>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBox x:Name="result" HorizontalAlignment="Center"  TextWrapping="WrapWithOverflow"  Text="TextBlock" VerticalAlignment="Center"
+                   Grid.Row="0"/>
+        
     </Grid>
 </Window>
