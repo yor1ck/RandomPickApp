@@ -36,7 +36,7 @@ namespace RandomPickerUI
             {
                 resulString = resulString + item + "\n";
             }
-            result.Text = resulString;
+           
         }
     }
 }
