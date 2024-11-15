@@ -73,7 +73,7 @@ namespace RandomPickerUI
         {
             var currentItems = new List<Item>();
             currentItems = CurrentSet.Items.ToList();
-            var picker = new PickRequest(currentItems,1);
+            var picker = new PickRequest(currentItems,3);
             ChoosingService chooser = new ChoosingService();
             var resultList = new List<string>();
             resultList = chooser.Random(picker);
