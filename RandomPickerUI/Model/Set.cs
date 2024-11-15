@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RandomPickerUI.Entities;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RandomPickerUI.Model
 {
-    internal class Set
+    public class Set
     {
         public Set(string name)
         {
@@ -18,5 +19,7 @@ namespace RandomPickerUI.Model
         public string Name { get; set; }
         public ObservableCollection<Group>Groups { get; set; }
         public ObservableCollection<Item> Items { get; set; }
+
     }
+
 }

@@ -6,8 +6,8 @@
     xmlns:local="clr-namespace:RandomPickerUI"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="MainWindow"
-    Width="450"
-    Height="650"
+    Width="400"
+    Height="600"
     mc:Ignorable="d">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -136,12 +136,20 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Label>Result</Label>
-            <ListView
+            <ListBox
          Name="ResultList"
          Grid.Row="1"
          Margin="10"
          VerticalAlignment="Stretch"
-         DisplayMemberPath="Name" />
+                ItemsSource="{Binding Path=ResultString}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
             <Grid Grid.Row="2" Margin="3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
@@ -151,7 +159,8 @@
              x:Name="random"
              Margin="5"
              Padding="5,0"
-             Content="Random" />
+             Content="Random"
+                    Click="random_Click"/>
                 <Button
              x:Name="saveAll"
              Grid.Column="1"

@@ -18,25 +18,37 @@ namespace RandomPickerUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        public MainWindowViewModel ViewModel { get; set; }
         public MainWindow()
         {
             InitializeComponent();
-            var testList = new List<Item>();
-            testList.Add(new Item("One"));
-            testList.Add(new Item("Two"));
-            testList.Add(new Item("Three"));
-            testList.Add(new Item("Four"));
+            ViewModel = new MainWindowViewModel();
+            DataContext = ViewModel;
+
+
+            //var testList = new List<Thing>();
+            //testList.Add(new Thing("One"));
+            //testList.Add(new Thing("Two"));
+            //testList.Add(new Thing("Three"));
+            //testList.Add(new Thing("Four"));
+
+            //var currentRequest = new PickRequest(testList, 2);
+            //ChoosingService chooser = new ChoosingService();
+            //var resultList = new List<string>();
+            //resultList = chooser.Random(currentRequest);
+            //var resulString = "";
+            //foreach (var item in resultList)
+            //{
+            //    resulString = resulString + item + "\n";
+            //}
+
+
+        }
+
+        private void random_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.Pick();
             
-            var currentRequest = new Request(testList, 2); 
-            ChoosingService chooser = new ChoosingService();
-            var resultList = new List<string>();
-            resultList = chooser.Random(currentRequest);
-            var resulString = "";
-            foreach (var item in resultList)
-            {
-                resulString = resulString + item + "\n";
-            }
-           
         }
     }
 }

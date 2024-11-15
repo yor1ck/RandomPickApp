@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace RandomPickerUI.Entities
 {
-    internal class Item
+    public class Thing
     {
-        public Item(string name)
+        public Thing(string name)
         {
               Name = name;
         }

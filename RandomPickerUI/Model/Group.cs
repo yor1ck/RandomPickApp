@@ -7,29 +7,18 @@ using System.Threading.Tasks;
 
 namespace RandomPickerUI.Model
 {
-    internal class Group
+    public class Group
     {
-        public Group(string name,Set set)
+        public Group(string name,Set parentSet)
         {
             this.Name = name;
-            this.ParentSet = set;
+            this.ParentSet = parentSet;
             this.Items = new ObservableCollection<Item>();
         }
         public string Name { get; set; }
         public Set ParentSet { get; set; }
         public ObservableCollection<Item> Items { get; set; }
 
-        public void AddItem(Item item)
-        {
-            if (this.ParentSet.Items.Contains(item))
-            {
-                Items.Add(item);
-            }
-            else
-            {
-                this.ParentSet.Items.Add(item);
-                Items.Add(item);
-            }
-        }
+
     }
 }

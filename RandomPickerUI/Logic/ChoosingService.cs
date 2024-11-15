@@ -9,14 +9,18 @@ namespace RandomPickerUI.Logic
 {
     internal class ChoosingService
     {
-         public List<string> Random(Request CurrentRequest)
+         public List<string> Random(PickRequest CurrentRequest)
         {
-            var randomList = CurrentRequest.Items;            
+            var randomList = CurrentRequest.Things;            
             var choosed = new List<string>();
             for (int i = 0; i < CurrentRequest.TimesToChoose; i++)
             {
+                if (randomList.Count == 0)
+                {
+                    break;
+                }
                 string itemName;
-                int listLenght = randomList.Count;
+                int listLenght = randomList.Count;                
                 var randomArray = randomList.ToArray();
                 var rand = new Random();
                 int itemId = rand.Next(0, randomArray.Length);
