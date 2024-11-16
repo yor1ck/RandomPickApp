@@ -58,7 +58,7 @@ namespace RandomPickerUI
 
         public MainWindowViewModel()
         {
-            Sets = new ObservableCollection<Set>();
+            sets = new ObservableCollection<Set>();
             var testSet = new Set("Test");
             testSet.Items.Add(new Item("One"));
             testSet.Items.Add(new Item("Two"));
@@ -66,8 +66,13 @@ namespace RandomPickerUI
             testSet.Items.Add(new Item("Four"));
             testSet.Items.Add(new Item("Five"));
             Sets.Add( testSet );
-            CurrentSet = Sets.First();
-            CurrentItem = Sets.First().Items.First();
+            var testSet2 = new Set("Test2");
+            testSet2.Items.Add(new Item("One 2"));
+            testSet2.Items.Add(new Item("Two 2"));
+            testSet2.Items.Add(new Item("Three 2"));
+            Sets.Add(testSet2);
+            currentSet = Sets.First();
+            currentItem = Sets.First().Items.First();
         }
         public void Pick()
         {
@@ -81,5 +86,29 @@ namespace RandomPickerUI
 
         }
 
+        internal void AddItemToSet()
+        {
+            var newItem = new Item("New Item");
+            currentSet.Items.Add(newItem);
+            CurrentItem = newItem;
+        }
+        internal void DeleteItemFromSet()
+        {
+            currentSet.Items.Remove(CurrentItem);
+        }
+
+        internal void AddSet()
+        {
+            var newSet = new Set("New Set");
+            var newItem = new Item("New Item");
+            newSet.Items.Add(newItem);
+            Sets.Add(newSet);
+            CurrentSet = newSet;
+        }
+
+        internal void DeleteSet()
+        {
+            Sets.Remove(CurrentSet);
+        }
     }
 }
