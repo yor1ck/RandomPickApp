@@ -42,14 +42,14 @@
                 Grid.Row="1"
                 Margin="10"
                 VerticalAlignment="Stretch"
-                DisplayMemberPath="Name" 
+                DisplayMemberPath="Name"
                 ItemsSource="{Binding Path=Sets}"
-                SelectedItem="{Binding Path= CurrentSet}"/>
+                SelectedItem="{Binding Path=CurrentSet}" />
             <TextBox
                 x:Name="editSet"
                 Grid.Row="2"
                 Margin="10,5"
-                Text="{Binding Path= CurrentSet.Name, UpdateSourceTrigger=PropertyChanged}"/>
+                Text="{Binding Path=CurrentSet.Name, UpdateSourceTrigger=PropertyChanged}" />
             <Grid Grid.Row="3" Margin="3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
@@ -59,19 +59,19 @@
                     x:Name="addSet"
                     Margin="5"
                     Padding="5,0"
-                    Content="Add Set"
-                    Click="addSet_Click"/>
+                    Click="addSet_Click"
+                    Content="Add Set" />
                 <Button
                     x:Name="deleteSet"
                     Grid.Column="1"
                     Margin="5"
                     Padding="5,0"
-                    Content="Delete Set" 
-                    Click="deleteSet_Click"/>
+                    Click="deleteSet_Click"
+                    Content="Delete Set" />
             </Grid>
 
         </Grid>
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition />
@@ -84,11 +84,13 @@
                 Grid.Row="1"
                 Margin="10"
                 VerticalAlignment="Stretch"
-                DisplayMemberPath="Name" />
+                DisplayMemberPath="Name" 
+                ItemsSource="{Binding Path=CurrentSet.Groups}"
+                SelectedItem="{Binding Path=CurrentGroup}"/>
             <TextBox
                 Grid.Row="2"
-                Margin="10,5"
-                Text="TextBox" />
+                Margin="10,5" 
+                Text="{Binding Path=CurrentGroup.Name, UpdateSourceTrigger=PropertyChanged}"/>
             <Grid Grid.Row="3" Margin="3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
@@ -107,7 +109,7 @@
                     Content="Delete Group" />
             </Grid>
         </Grid>
-        <Grid Grid.Row="1" Grid.Column="1">
+        <Grid Grid.Row="2" Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition />
@@ -122,12 +124,12 @@
                 VerticalAlignment="Stretch"
                 DisplayMemberPath="Name"
                 ItemsSource="{Binding Path=CurrentSet.Items}"
-                SelectedItem="{Binding Path= CurrentItem}"/>
+                SelectedItem="{Binding Path=CurrentItem}" />
             <TextBox
                 x:Name="editItem"
                 Grid.Row="2"
                 Margin="10,5"
-                Text="{Binding Path= CurrentItem.Name, UpdateSourceTrigger=PropertyChanged}"/>
+                Text="{Binding Path=CurrentItem.Name, UpdateSourceTrigger=PropertyChanged}" />
             <Grid Grid.Row="3" Margin="3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
@@ -139,21 +141,22 @@
                     Grid.Column="0"
                     Margin="5"
                     Padding="5,0"
-                    Content="Add To Group"/>
+                    Content="Add To Group" 
+                    Click="addToGroup_Click"/>
                 <Button
                     x:Name="addItem"
                     Grid.Column="1"
                     Margin="5"
                     Padding="5,0"
-                    Content="Add Item" 
-                    Click="addItem_Click"/>
+                    Click="addItem_Click"
+                    Content="Add Item" />
                 <Button
                     x:Name="deleteItem"
                     Grid.Column="2"
                     Margin="5"
                     Padding="5,0"
-                    Content="Delete Item" 
-                    Click="deleteItem_Click"/>
+                    Click="deleteItem_Click"
+                    Content="Delete Item" />
             </Grid>
         </Grid>
         <Grid Grid.Row="2" Grid.Column="1">
@@ -168,7 +171,9 @@
                 Grid.Row="1"
                 Margin="10"
                 VerticalAlignment="Stretch"
-                DisplayMemberPath="Name" />
+                DisplayMemberPath="Name" 
+                ItemsSource="{Binding Path=CurrentGroup.Items}"
+                SelectedItem="{Binding Path=CurrentGroupItem}"/>
 
 
             <Button
@@ -177,7 +182,8 @@
                 Grid.Column="1"
                 Margin="5"
                 Padding="5,0"
-                Content="Delete From Group" />
+                Content="Delete From Group"
+                Click="DeleteItemFromGroup_Click"/>
 
         </Grid>
         <Grid Grid.Row="3" Grid.ColumnSpan="2">
@@ -199,17 +205,18 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Button
-                    x:Name="random"
+                    x:Name="randomSet"
                     Margin="5"
                     Padding="5,0"
-                    Click="random_Click"
-                    Content="Random" />
+                    Click="randomSet_Click"
+                    Content="Random Set" />
                 <Button
-                    x:Name="saveAll"
+                    x:Name="randomGroup"
                     Grid.Column="1"
                     Margin="5"
                     Padding="5,0"
-                    Content="Save" />
+                    Content="Random Group" 
+                    Click="randomGroup_Click"/>
             </Grid>
 
         </Grid>
