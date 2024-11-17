@@ -67,6 +67,28 @@ namespace RandomPickerUI
                 RaisePropertyChanged(nameof(CurrentGroupItem));
             }
         }
+        private int timesFromSet;
+
+        public int TimesFromSet
+        {
+            get { return timesFromSet; }
+            set
+            {
+                timesFromSet = value;
+                RaisePropertyChanged(nameof(TimesFromSet));
+            }
+        }
+        private int timesFromGroup;
+
+        public int TimesFromGroup
+        {
+            get { return timesFromGroup; }
+            set
+            {
+                timesFromGroup = value;
+                RaisePropertyChanged(nameof(TimesFromGroup));
+            }
+        }
         private ObservableCollection<string> resultString;
         public ObservableCollection<string> ResultString
         {
@@ -106,16 +128,21 @@ namespace RandomPickerUI
             currentSet = Sets.First();
             currentItem = Sets.First().Items.First();
             currentGroup = currentSet.Groups.First();
+            TimesFromSet = 1;
+            TimesFromGroup = 1;
         }
         public void PickFromSet()
         {
             var currentItems = new List<Item>();
             currentItems = CurrentSet.Items.ToList();
-            var picker = new PickRequest(currentItems,3);
-            ChoosingService chooser = new ChoosingService();
-            var resultList = new List<string>();
-            resultList = chooser.Random(picker);
-            ResultString = new ObservableCollection<string>(resultList);
+            if (TimesFromSet > 0)
+            {
+                var picker = new PickRequest(currentItems, TimesFromSet);
+                ChoosingService chooser = new ChoosingService();
+                var resultList = new List<string>();
+                resultList = chooser.Random(picker);
+                ResultString = new ObservableCollection<string>(resultList);
+            }
 
         }
 
@@ -148,11 +175,14 @@ namespace RandomPickerUI
         {
             var currentItems = new List<Item>();
             currentItems = CurrentGroup.Items.ToList();
-            var picker = new PickRequest(currentItems, 2);
-            ChoosingService chooser = new ChoosingService();
-            var resultList = new List<string>();
-            resultList = chooser.Random(picker);
-            ResultString = new ObservableCollection<string>(resultList);
+            if (TimesFromGroup > 0)
+            {
+                var picker = new PickRequest(currentItems, TimesFromGroup);
+                ChoosingService chooser = new ChoosingService();
+                var resultList = new List<string>();
+                resultList = chooser.Random(picker);
+                ResultString = new ObservableCollection<string>(resultList);
+            }
         }
 
         internal void AddItemToGroup()
