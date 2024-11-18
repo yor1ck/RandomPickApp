@@ -205,6 +205,17 @@ namespace RandomPickerUI
         {
             CurrentGroup.Items.Remove(CurrentGroupItem);            
         }
+        internal void AddGroup()
+        {
+            var newGroup = new Group("New Group");
+            CurrentSet.Groups.Add(newGroup);
+            CurrentGroup = newGroup;
+        }
+        internal void DeleteGroup()
+        {
+            CurrentSet.Groups.Remove(CurrentGroup);
+        }
+
         internal void SaveToFile()
         {
             string fileName ="Sets.json";

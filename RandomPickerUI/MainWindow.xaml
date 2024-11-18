@@ -100,13 +100,15 @@
                     x:Name="addGroup"
                     Margin="5"
                     Padding="5,0"
-                    Content="Add Group" />
+                    Content="Add Group"
+                    Click="addGroup_Click"/>
                 <Button
                     x:Name="deleteGroup"
                     Grid.Column="1"
                     Margin="5"
                     Padding="5,0"
-                    Content="Delete Group" />
+                    Content="Delete Group"
+                    Click="deleteGroup_Click"/>
             </Grid>
         </Grid>
         <Grid Grid.Row="2" Grid.Column="0">

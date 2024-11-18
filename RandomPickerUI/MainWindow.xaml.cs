@@ -75,5 +75,15 @@ namespace RandomPickerUI
         {
             ViewModel.DeleteItemFromGroup();
         }
+
+        private void addGroup_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.AddGroup();
+        }
+
+        private void deleteGroup_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.DeleteGroup();
+        }
     }
 }
