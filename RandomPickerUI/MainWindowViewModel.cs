@@ -107,10 +107,12 @@ namespace RandomPickerUI
             string fileName = "Sets.json";
             string jsonString = File.ReadAllText(fileName);
             List<Set> SetsFromJson  = JsonSerializer.Deserialize<List<Set>>(jsonString)!;
-            Sets=  new ObservableCollection<Set>(SetsFromJson);
+            sets = new ObservableCollection<Set>(SetsFromJson);
             currentSet = Sets.First();
             currentItem = Sets.First().Items.First();
             currentGroup = currentSet.Groups.First();
+            currentGroupItem = currentGroup.Items.First();
+            resultString = new ObservableCollection<string>();
             TimesFromSet = 1;
             TimesFromGroup = 1;
         }
