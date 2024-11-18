@@ -104,34 +104,6 @@ namespace RandomPickerUI
 
         public MainWindowViewModel()
         {
-            //sets = new ObservableCollection<Set>();
-            //var testSet = new Set("Test");
-            //testSet.Items.Add(new Item("One"));
-            //testSet.Items.Add(new Item("Two"));
-            //testSet.Items.Add(new Item("Three"));
-            //testSet.Items.Add(new Item("Four"));
-            //testSet.Items.Add(new Item("Five"));
-            //var group1 = new Group("group 1");
-            //var group2 = new Group("group 2");
-            //var testArray = testSet.Items.ToArray();
-            //group1.Items.Add(testArray[0]);
-            //group1.Items.Add(testArray[1]);
-            //group1.Items.Add(testArray[2]);
-            //testSet.Groups.Add(group1);
-            //group2.Items.Add(testArray[2]);
-            //group2.Items.Add(testArray[4]);
-            //testSet.Groups.Add(group2);
-            //Sets.Add( testSet );
-            //var testSet2 = new Set("Test2");
-            //testSet2.Items.Add(new Item("One 2"));
-            //testSet2.Items.Add(new Item("Two 2"));
-            //testSet2.Items.Add(new Item("Three 2"));
-            //Sets.Add(testSet2);
-            //currentSet = Sets.First();
-            //currentItem = Sets.First().Items.First();
-            //currentGroup = currentSet.Groups.First();
-            //TimesFromSet = 1;
-            //TimesFromGroup = 1;
             string fileName = "Sets.json";
             string jsonString = File.ReadAllText(fileName);
             List<Set> SetsFromJson  = JsonSerializer.Deserialize<List<Set>>(jsonString)!;
