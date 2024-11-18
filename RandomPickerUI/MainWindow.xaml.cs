@@ -1,5 +1,6 @@
 ﻿using RandomPickerUI.Entities;
 using RandomPickerUI.Logic;
+using System.ComponentModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,7 +25,13 @@ namespace RandomPickerUI
             InitializeComponent();
             ViewModel = new MainWindowViewModel();
             DataContext = ViewModel;
+            base.Closing += this.MainWindow_Closing;
 
+        }
+
+        private void MainWindow_Closing(object? sender, CancelEventArgs e)
+        {
+            ViewModel.SaveToFile();
         }
 
         private void randomSet_Click(object sender, RoutedEventArgs e)

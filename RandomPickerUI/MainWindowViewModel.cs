@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using RandomPickerUI.Entities;
 using RandomPickerUI.Logic;
@@ -102,29 +104,38 @@ namespace RandomPickerUI
 
         public MainWindowViewModel()
         {
-            sets = new ObservableCollection<Set>();
-            var testSet = new Set("Test");
-            testSet.Items.Add(new Item("One"));
-            testSet.Items.Add(new Item("Two"));
-            testSet.Items.Add(new Item("Three"));
-            testSet.Items.Add(new Item("Four"));
-            testSet.Items.Add(new Item("Five"));
-            var group1 = new Group("group 1");
-            var group2 = new Group("group 2");
-            var testArray = testSet.Items.ToArray();
-            group1.Items.Add(testArray[0]);
-            group1.Items.Add(testArray[1]);
-            group1.Items.Add(testArray[2]);
-            testSet.Groups.Add(group1);
-            group2.Items.Add(testArray[2]);
-            group2.Items.Add(testArray[4]);
-            testSet.Groups.Add(group2);
-            Sets.Add( testSet );
-            var testSet2 = new Set("Test2");
-            testSet2.Items.Add(new Item("One 2"));
-            testSet2.Items.Add(new Item("Two 2"));
-            testSet2.Items.Add(new Item("Three 2"));
-            Sets.Add(testSet2);
+            //sets = new ObservableCollection<Set>();
+            //var testSet = new Set("Test");
+            //testSet.Items.Add(new Item("One"));
+            //testSet.Items.Add(new Item("Two"));
+            //testSet.Items.Add(new Item("Three"));
+            //testSet.Items.Add(new Item("Four"));
+            //testSet.Items.Add(new Item("Five"));
+            //var group1 = new Group("group 1");
+            //var group2 = new Group("group 2");
+            //var testArray = testSet.Items.ToArray();
+            //group1.Items.Add(testArray[0]);
+            //group1.Items.Add(testArray[1]);
+            //group1.Items.Add(testArray[2]);
+            //testSet.Groups.Add(group1);
+            //group2.Items.Add(testArray[2]);
+            //group2.Items.Add(testArray[4]);
+            //testSet.Groups.Add(group2);
+            //Sets.Add( testSet );
+            //var testSet2 = new Set("Test2");
+            //testSet2.Items.Add(new Item("One 2"));
+            //testSet2.Items.Add(new Item("Two 2"));
+            //testSet2.Items.Add(new Item("Three 2"));
+            //Sets.Add(testSet2);
+            //currentSet = Sets.First();
+            //currentItem = Sets.First().Items.First();
+            //currentGroup = currentSet.Groups.First();
+            //TimesFromSet = 1;
+            //TimesFromGroup = 1;
+            string fileName = "Sets.json";
+            string jsonString = File.ReadAllText(fileName);
+            List<Set> SetsFromJson  = JsonSerializer.Deserialize<List<Set>>(jsonString)!;
+            Sets=  new ObservableCollection<Set>(SetsFromJson);
             currentSet = Sets.First();
             currentItem = Sets.First().Items.First();
             currentGroup = currentSet.Groups.First();
@@ -192,7 +203,13 @@ namespace RandomPickerUI
 
         internal void DeleteItemFromGroup()
         {
-            CurrentGroup.Items.Remove(CurrentGroupItem);      
+            CurrentGroup.Items.Remove(CurrentGroupItem);            
+        }
+        internal void SaveToFile()
+        {
+            string fileName ="Sets.json";
+            string jsonString = JsonSerializer.Serialize(Sets);
+            File.WriteAllText(fileName, jsonString);
         }
     }
 }
