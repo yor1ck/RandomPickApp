@@ -140,26 +140,26 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Button
-                    x:Name="addToGroup"
-                    Grid.Column="0"
-                    Margin="5"
-                    Padding="5,0"
-                    Click="addToGroup_Click"
-                    Content="Add To Group" />
-                <Button
                     x:Name="addItem"
-                    Grid.Column="1"
+                    Grid.Column="0"
                     Margin="5"
                     Padding="5,0"
                     Click="addItem_Click"
                     Content="Add Item" />
                 <Button
                     x:Name="deleteItem"
-                    Grid.Column="2"
+                    Grid.Column="1"
                     Margin="5"
                     Padding="5,0"
                     Click="deleteItem_Click"
                     Content="Delete Item" />
+                <Button
+                    x:Name="addToGroup"
+                    Grid.Column="2"
+                    Margin="5"
+                    Padding="5,0"
+                    Click="addToGroup_Click"
+                    Content="Add To Group" />
             </Grid>
         </Grid>
         <Grid Grid.Row="2" Grid.Column="1">
