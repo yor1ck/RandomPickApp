@@ -175,6 +175,15 @@ namespace RandomPickerUI
         }
         internal void DeleteItemFromSet()
         {
+            foreach (var group in currentSet.Groups)
+            {
+                var itemInGroup = group.Items.FirstOrDefault(item => item.Name == CurrentItem.Name);
+                if (itemInGroup != null)
+                {
+                    group.Items.Remove(itemInGroup);
+                }
+
+            }
             currentSet.Items.Remove(CurrentItem);
         }
 
