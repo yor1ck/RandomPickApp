@@ -169,22 +169,28 @@ namespace RandomPickerUI
 
         internal void AddItemToSet()
         {
-            var newItem = new Item("New Item");
-            currentSet.Items.Add(newItem);
-            CurrentItem = newItem;
+            if (CurrentSet != null)
+            {
+                var newItem = new Item("New Item");
+                CurrentSet.Items.Add(newItem);
+                CurrentItem = newItem;
+            }
         }
         internal void DeleteItemFromSet()
         {
-            foreach (var group in currentSet.Groups)
+            if (CurrentItem != null)
             {
-                var itemInGroup = group.Items.FirstOrDefault(item => item.Name == CurrentItem.Name);
-                if (itemInGroup != null)
+                foreach (var group in currentSet.Groups)
                 {
-                    group.Items.Remove(itemInGroup);
-                }
+                    var itemInGroup = group.Items.FirstOrDefault(item => item.Name == CurrentItem.Name);
+                    if (itemInGroup != null)
+                    {
+                        group.Items.Remove(itemInGroup);
+                    }
 
+                }
+                currentSet.Items.Remove(CurrentItem);
             }
-            currentSet.Items.Remove(CurrentItem);
         }
 
         internal void AddSet()
@@ -198,7 +204,10 @@ namespace RandomPickerUI
 
         internal void DeleteSet()
         {
-            Sets.Remove(CurrentSet);
+            if (CurrentSet != null)
+            {
+                Sets.Remove(CurrentSet);
+            }
         }
 
         internal void PickFromGroup()
@@ -217,22 +226,34 @@ namespace RandomPickerUI
 
         internal void AddItemToGroup()
         {
-            CurrentGroup.Items.Add(CurrentItem);
+            if (CurrentItem != null && CurrentGroup!= null)
+            {
+                CurrentGroup.Items.Add(CurrentItem);
+            }
         }
 
         internal void DeleteItemFromGroup()
         {
-            CurrentGroup.Items.Remove(CurrentGroupItem);            
+            if (CurrentGroupItem != null && CurrentGroup != null)
+            {
+                CurrentGroup.Items.Remove(CurrentGroupItem);
+            }
         }
         internal void AddGroup()
         {
-            var newGroup = new Group("New Group");
-            CurrentSet.Groups.Add(newGroup);
-            CurrentGroup = newGroup;
+            if (CurrentSet != null)
+            {
+                var newGroup = new Group("New Group");
+                CurrentSet.Groups.Add(newGroup);
+                CurrentGroup = newGroup;
+            }
         }
         internal void DeleteGroup()
         {
-            CurrentSet.Groups.Remove(CurrentGroup);
+            if (CurrentSet != null)
+            {
+                CurrentSet.Groups.Remove(CurrentGroup);
+            }
         }
 
         internal void SaveToFile()
