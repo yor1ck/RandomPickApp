@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:RandomPickerUI"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:custom="clr-namespace:RandomPickerUI"
     Title="MainWindow"
     Width="600"
     Height="900"
@@ -38,7 +39,7 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Label>Sets</Label>
-            <ListView
+            <custom:ScrollingListBox
                 x:Name="setList"
                 Grid.Row="1"
                 Margin="10"
@@ -80,8 +81,8 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Label>Groups</Label>
-            <ListView
-                Name="Groups"
+            <custom:ScrollingListBox
+                x:Name="Groups"
                 Grid.Row="1"
                 Margin="10"
                 VerticalAlignment="Stretch"
@@ -120,8 +121,8 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Label>All Items</Label>
-            <ListBox
-                Name="ListItems"
+            <custom:ScrollingListBox
+                x:Name="ListItems"
                 Grid.Row="1"
                 Margin="10"
                 VerticalAlignment="Stretch"
@@ -169,8 +170,8 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Label>Group Items</Label>
-            <ListBox
-                Name="GroupItems"
+            <custom:ScrollingListBox
+                x:Name="GroupItems"
                 Grid.Row="1"
                 Margin="10"
                 VerticalAlignment="Stretch"
@@ -196,8 +197,8 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Label>Result</Label>
-            <ListBox
-                Name="ResultList"
+            <custom:ScrollingListBox
+                x:Name="ResultList"
                 Grid.Row="1"
                 Margin="10"
                 VerticalAlignment="Stretch"
