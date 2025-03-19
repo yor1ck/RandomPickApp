@@ -20,22 +20,22 @@ namespace RandomPickerUI
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        private ObservableCollection<Set> sets;
+        private ObservableCollection<FullList> fullLists;
 
-        public ObservableCollection<Set> Sets
+        public ObservableCollection<FullList> FullLists
         {
-            get { return sets; }
-            set { sets = value;
-                RaisePropertyChanged(nameof(Sets));
+            get { return fullLists; }
+            set { fullLists = value;
+                RaisePropertyChanged(nameof(FullLists));
             }
         }
-        private Set currentSet;
+        private FullList currentFullList;
 
-        public Set CurrentSet
+        public FullList CurrentFullList
         {
-            get { return currentSet; }
-            set { currentSet = value;
-                RaisePropertyChanged(nameof(CurrentSet));
+            get { return currentFullList; }
+            set { currentFullList = value;
+                RaisePropertyChanged(nameof(CurrentFullList));
             }
         }
         private Group currentGroup;
@@ -69,15 +69,15 @@ namespace RandomPickerUI
                 RaisePropertyChanged(nameof(CurrentGroupItem));
             }
         }
-        private int timesFromSet;
+        private int timesFromList;
 
-        public int TimesFromSet
+        public int TimesFromList
         {
-            get { return timesFromSet; }
+            get { return timesFromList; }
             set
             {
-                timesFromSet = value;
-                RaisePropertyChanged(nameof(TimesFromSet));
+                timesFromList = value;
+                RaisePropertyChanged(nameof(TimesFromList));
             }
         }
         private int timesFromGroup;
@@ -104,24 +104,24 @@ namespace RandomPickerUI
 
         public MainWindowViewModel()
         {
-            string fileName = "Sets.json";
+            string fileName = "Lists.json";
             if (File.Exists(fileName))
             {
                 string jsonString = File.ReadAllText(fileName);
-                List<Set> SetsFromJson = JsonSerializer.Deserialize<List<Set>>(jsonString)!;
-                sets = new ObservableCollection<Set>(SetsFromJson);
-                currentSet = Sets.First();
-                currentItem = Sets.First().Items.First();
-                currentGroup = currentSet.Groups.First();
+                List<FullList> SetsFromJson = JsonSerializer.Deserialize<List<FullList>>(jsonString)!;
+                fullLists = new ObservableCollection<FullList>(SetsFromJson);
+                currentFullList = FullLists.First();
+                currentItem = FullLists.First().Items.First();
+                currentGroup = currentFullList.Groups.First();
                 currentGroupItem = currentGroup.Items.First();
                 resultString = new ObservableCollection<string>();
-                TimesFromSet = 1;
+                TimesFromList = 1;
                 TimesFromGroup = 1;
             }
             else
             {
-                sets = new ObservableCollection<Set>();
-                var testSet = new Set("Test");
+                fullLists = new ObservableCollection<FullList>();
+                var testSet = new FullList("Test");
                 testSet.Items.Add(new Item("One"));
                 testSet.Items.Add(new Item("Two"));
                 testSet.Items.Add(new Item("Three"));
@@ -137,28 +137,28 @@ namespace RandomPickerUI
                 group2.Items.Add(testArray[2]);
                 group2.Items.Add(testArray[4]);
                 testSet.Groups.Add(group2);
-                Sets.Add(testSet);
-                var testSet2 = new Set("Test2");
+                FullLists.Add(testSet);
+                var testSet2 = new FullList("Test2");
                 testSet2.Items.Add(new Item("One 2"));
                 testSet2.Items.Add(new Item("Two 2"));
                 testSet2.Items.Add(new Item("Three 2"));
-                Sets.Add(testSet2);
-                currentSet = Sets.First();
-                currentItem = Sets.First().Items.First();
-                currentGroup = currentSet.Groups.First();
+                FullLists.Add(testSet2);
+                currentFullList = FullLists.First();
+                currentItem = FullLists.First().Items.First();
+                currentGroup = currentFullList.Groups.First();
                 currentGroupItem = currentGroup.Items.First();
                 resultString = new ObservableCollection<string>();
-                TimesFromSet = 1;
+                TimesFromList = 1;
                 TimesFromGroup = 1;
             }
         }
-        public void PickFromSet()
+        public void PickFromFullList()
         {
             var currentItems = new List<Item>();
-            currentItems = CurrentSet.Items.ToList();
-            if (TimesFromSet > 0)
+            currentItems = CurrentFullList.Items.ToList();
+            if (TimesFromList > 0)
             {
-                var picker = new PickRequest(currentItems, TimesFromSet);
+                var picker = new PickRequest(currentItems, TimesFromList);
                 ChoosingService chooser = new ChoosingService();
                 var resultList = new List<string>();
                 resultList = chooser.Random(picker);
@@ -167,20 +167,20 @@ namespace RandomPickerUI
 
         }
 
-        internal void AddItemToSet()
+        internal void AddItemToList()
         {
-            if (CurrentSet != null)
+            if (CurrentFullList != null)
             {
                 var newItem = new Item("New Item");
-                CurrentSet.Items.Add(newItem);
+                CurrentFullList.Items.Add(newItem);
                 CurrentItem = newItem;
             }
         }
-        internal void DeleteItemFromSet()
+        internal void DeleteItemFromList()
         {
             if (CurrentItem != null)
             {
-                foreach (var group in currentSet.Groups)
+                foreach (var group in currentFullList.Groups)
                 {
                     var itemInGroup = group.Items.FirstOrDefault(item => item.Name == CurrentItem.Name);
                     if (itemInGroup != null)
@@ -189,24 +189,24 @@ namespace RandomPickerUI
                     }
 
                 }
-                currentSet.Items.Remove(CurrentItem);
+                currentFullList.Items.Remove(CurrentItem);
             }
         }
 
-        internal void AddSet()
+        internal void AddFullList()
         {
-            var newSet = new Set("New Set");
+            var newList = new FullList("New List");
             var newItem = new Item("New Item");
-            newSet.Items.Add(newItem);
-            Sets.Add(newSet);
-            CurrentSet = newSet;
+            newList.Items.Add(newItem);
+            FullLists.Add(newList);
+            CurrentFullList = newList;
         }
 
-        internal void DeleteSet()
+        internal void DeleteList()
         {
-            if (CurrentSet != null)
+            if (CurrentFullList != null)
             {
-                Sets.Remove(CurrentSet);
+                FullLists.Remove(CurrentFullList);
             }
         }
 
@@ -241,25 +241,25 @@ namespace RandomPickerUI
         }
         internal void AddGroup()
         {
-            if (CurrentSet != null)
+            if (CurrentFullList != null)
             {
                 var newGroup = new Group("New Group");
-                CurrentSet.Groups.Add(newGroup);
+                CurrentFullList.Groups.Add(newGroup);
                 CurrentGroup = newGroup;
             }
         }
         internal void DeleteGroup()
         {
-            if (CurrentSet != null)
+            if (CurrentFullList != null)
             {
-                CurrentSet.Groups.Remove(CurrentGroup);
+                CurrentFullList.Groups.Remove(CurrentGroup);
             }
         }
 
         internal void SaveToFile()
         {
             string fileName ="Sets.json";
-            string jsonString = JsonSerializer.Serialize(Sets);
+            string jsonString = JsonSerializer.Serialize(FullLists);
             File.WriteAllText(fileName, jsonString);
         }
     }

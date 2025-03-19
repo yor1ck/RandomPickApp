@@ -38,38 +38,38 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <Label>Sets</Label>
+            <Label>Lists</Label>
             <custom:ScrollingListBox
                 x:Name="setList"
                 Grid.Row="1"
                 Margin="10"
                 VerticalAlignment="Stretch"
                 DisplayMemberPath="Name"
-                ItemsSource="{Binding Path=Sets}"
-                SelectedItem="{Binding Path=CurrentSet}" />
+                ItemsSource="{Binding Path=FullLists}"
+                SelectedItem="{Binding Path=CurrentFullList}" />
             <TextBox
                 x:Name="editSet"
                 Grid.Row="2"
                 Margin="10,5"
-                Text="{Binding Path=CurrentSet.Name, UpdateSourceTrigger=PropertyChanged}" />
+                Text="{Binding Path=CurrentFullList.Name, UpdateSourceTrigger=PropertyChanged}" />
             <Grid Grid.Row="3" Margin="3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Button
-                    x:Name="addSet"
+                    x:Name="addList"
                     Margin="5"
                     Padding="5,0"
-                    Click="addSet_Click"
-                    Content="Add Set" />
+                    Click="addList_Click"
+                    Content="Add List" />
                 <Button
-                    x:Name="deleteSet"
+                    x:Name="deleteList"
                     Grid.Column="1"
                     Margin="5"
                     Padding="5,0"
-                    Click="deleteSet_Click"
-                    Content="Delete Set" />
+                    Click="deleteList_Click"
+                    Content="Delete List" />
             </Grid>
 
         </Grid>
@@ -87,7 +87,7 @@
                 Margin="10"
                 VerticalAlignment="Stretch"
                 DisplayMemberPath="Name"
-                ItemsSource="{Binding Path=CurrentSet.Groups}"
+                ItemsSource="{Binding Path=CurrentFullList.Groups}"
                 SelectedItem="{Binding Path=CurrentGroup}" />
             <TextBox
                 Grid.Row="2"
@@ -127,7 +127,7 @@
                 Margin="10"
                 VerticalAlignment="Stretch"
                 DisplayMemberPath="Name"
-                ItemsSource="{Binding Path=CurrentSet.Items}"
+                ItemsSource="{Binding Path=CurrentFullList.Items}"
                 SelectedItem="{Binding Path=CurrentItem}" />
             <TextBox
                 x:Name="editItem"
@@ -211,21 +211,21 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Button
-                    x:Name="randomSet"
+                    x:Name="randomList"
                     Margin="5"
                     Padding="5,0"
-                    Click="randomSet_Click"
-                    Content="Pick From Full Set" />
+                    Click="randomList_Click"
+                    Content="Pick From Full List" />
                 <StackPanel
                     Grid.Column="1"
                     Margin="5"
                     Orientation="Horizontal">
                     <Label>Take</Label>
                     <TextBox
-                        x:Name="timesFromSet"
+                        x:Name="timesFromList"
                         Width="25"
                         VerticalAlignment="Center"
-                        Text="{Binding Path=TimesFromSet}" />
+                        Text="{Binding Path=TimesFromList}" />
 
                 </StackPanel>
                 <Button

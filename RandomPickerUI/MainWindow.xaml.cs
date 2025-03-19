@@ -34,9 +34,9 @@ namespace RandomPickerUI
             ViewModel.SaveToFile();
         }
 
-        private void randomSet_Click(object sender, RoutedEventArgs e)
+        private void randomList_Click(object sender, RoutedEventArgs e)
         {
-            ViewModel.PickFromSet();
+            ViewModel.PickFromFullList();
             
         }
         private void randomGroup_Click(object sender, RoutedEventArgs e)
@@ -46,24 +46,24 @@ namespace RandomPickerUI
 
         private void addItem_Click(object sender, RoutedEventArgs e)
         {
-            ViewModel.AddItemToSet();
+            ViewModel.AddItemToList();
             editItem.Focus();
         }
 
         private void deleteItem_Click(object sender, RoutedEventArgs e)
         {
-            ViewModel.DeleteItemFromSet();
+            ViewModel.DeleteItemFromList();
         }
 
-        private void addSet_Click(object sender, RoutedEventArgs e)
+        private void addList_Click(object sender, RoutedEventArgs e)
         {
-            ViewModel.AddSet();
+            ViewModel.AddFullList();
             editSet.Focus();
         }
 
-        private void deleteSet_Click(object sender, RoutedEventArgs e)
+        private void deleteList_Click(object sender, RoutedEventArgs e)
         {
-            ViewModel.DeleteSet();
+            ViewModel.DeleteList();
         }
 
         private void addToGroup_Click(object sender, RoutedEventArgs e)

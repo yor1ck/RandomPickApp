@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace RandomPickerUI.Model
 {
-    public class Set
+    public class FullList
     {
-        public Set(string name)
+        public FullList(string name)
         {
             this.Name = name;
             this.Groups = new ObservableCollection<Group>();
